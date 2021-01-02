@@ -3,7 +3,7 @@ from __future__ import division
 import time
 import random
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 from backgammon.game import Game
 from backgammon.agents.human_agent import HumanAgent
@@ -157,7 +157,7 @@ class Model(object):
         self.saver = tf.train.Saver(max_to_keep=1)
 
         # run variable initializers
-        self.sess.run(tf.global_variables_initializer())
+        self.sess.run(tf.initialize_all_variables())
 
         # after training a model, we can restore checkpoints here
         if restore:
